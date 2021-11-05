@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Lora|Ubuntu:300,400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'post/responsive.css' %}">
+    <title>Responsive</title>
+</head>
+<body>
+    <header>
+        <div class="container container-flex">
+            <div class="site-title">
+                <h1>Living the social life</h1>
+                <p class="subtitle">A blog exploring minimalism in life</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'about' %}">About me</a></li>
+                    <li><a href="{% url 'recent' %}">Recent posts</a></li>
+                </ul>
+            </nav>
+        </div> <!-- / .container -->
+    </header>
+{% block content %}
+
+     <div class="container container-flex">
+        <main role="main">
+            <article class="article-featured">
+                <h2 class="article-title">{{nth_post.title}}</h2>
+                <img src="{{nth_post.image.url}}" alt="simple white desk on a white wall with a plant on the far right side" class="article-image">
+                <p class="article-info">{{nth_post.date_posted}} | 3 comments</p>
+                <p class="article-body">{{nth_post.content}}</p>
+                <a href="#" class="article-read-more">CONTINUE READING</a>
+            </article>
+        {% for post in posts %}
+            <article class="article-recent">
+                <div class="article-recent-main">
+                    <h2 class="article-title">{{post.title}} </h2>
+                    <p class="article-body">{{post.content}}</p>
+                    <a href="#" class="article-read-more">CONTINUE READING</a>
+                </div>
+                <div class="article-recent-secondary">
+                    <img src="{{post.image.url}}" alt="two dumplings on a wood plate with chopsticks" class="article-image">
+                    <p class="article-info">{{post.date_posted}}| 3 comments</p>
+                </div>
+            </article>
+        {% endfor %}
+    {% endblock content%}
+        </main>
+
+        <aside class="sidebar">
+        {% block aside %}
+            <div class="sidebar-widget">
+                <h2 class="widget-title">ABOUT ME</h2>
+                <img src="{% static 'post/about-me.jpg' %}" alt="john doe" class="widget-image">
+                <p class="widget-body">I find life better, and I'm happier, when things are nice and simple.</p>
+            </div>
+        {% endblock aside %}
+            <div class="sidebar-widget">
+                <h2 class="widget-title">RECENT POSTS</h2>
+            {% for post in posts %}
+                <div class="widget-recent-post">
+                    <h3 class="widget-recent-post-title">{{post.title}}</h3>
+                    <img src="{{post.image.url}}" alt="two dumplings on a wood plate with chopsticks" class="widget-image">
+                </div>
+            {% endfor %}
+        </aside>
+
+    </div>
+    <footer>
+        <p></p>
+        <p></p>
+    </footer>
+</body>
+</html>

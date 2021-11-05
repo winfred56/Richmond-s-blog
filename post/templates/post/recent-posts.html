@@ -1,0 +1,58 @@
+{% extends 'post/responsive.html' %}
+{% load static %}
+{% block content %}
+<div class="container container-flex">
+    <main role="main">
+    {% for post in posts %}
+        <article class="article-recent">
+            <div class="article-recent-main">
+                <h2 class="article-title">{{post.title}}</h2>
+                <p class="article-body">{{post.content}}</p>
+                <a href="#" class="article-read-more">CONTINUE READING</a>
+            </div>
+            <div class="article-recent-secondary">
+                <img src="{{post.image.url}}" alt="simple white desk on a white wall with a plant on the far right side" class="article-image">
+                <p class="article-info">{{post.date_posted}} | 3 comments</p>
+            </div>
+        </article>
+    {% endfor %}
+    </main>
+{% endblock content %}
+    <aside class="sidebar">
+        
+        <div class="sidebar-widget">
+            <h2 class="widget-title">ABOUT ME</h2>
+            <img src="img/about-me.jpg" alt="john doe" class="widget-image">
+            <p class="widget-body">I find life better, and I'm happier, when things are nice and simple.</p>
+        </div>
+        
+        <div class="sidebar-widget">
+            <h2 class="widget-title">RECENT POSTS</h2>
+            <div class="widget-recent-post">
+                <h3 class="widget-recent-post-title">Keeping cooking simple</h3>
+                <img src="img/food.jpg" alt="two dumplings on a wood plate with chopsticks" class="widget-image">
+            </div>
+            <div class="widget-recent-post">
+                <h3 class="widget-recent-post-title">Simplicity and work</h3>
+                <img src="img/work.jpg" alt="a chair white chair at a white desk on a white wall" class="widget-image">
+            </div>
+            <div class="widget-recent-post">
+                <h3 class="widget-recent-post-title">Simple decorations</h3>
+                <img src="img/deco.jpg" alt="a green plant in a clear, round vase with water in it" class="widget-image">
+            </div>
+        </div>
+        
+    </aside>
+    
+</div>
+
+
+<footer>
+    <p><strong>Living the Simple Life</strong></p>
+    <p>Copyright 2019</p>
+</footer>
+
+
+
+</body>
+</html>
